@@ -1,9 +1,11 @@
 import NavBar from './components/navbar'
 import './App.sass';
+import ItemListContainer from "./components/itemListContainer"
 
 function App() {
   return <div>
-    <NavBar></NavBar>
+    <NavBar/>
+    <ItemListContainer greeting={"Items"}></ItemListContainer>
   </div>
 }
 

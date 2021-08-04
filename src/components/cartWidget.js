@@ -11,8 +11,7 @@ export default class CartWidget extends Component {
         return (
             <div className={"cart"}>
                 <span className={"iconify"} data-icon={"mdi:cart-outline"} data-inline={"false"}></span>
-                <span>{this.state.cartElements} elemento{this.state.cartElements == 1 ? "":"s"}</span>
-                <span class="caret"></span>
+                <span>{this.state.cartElements} elemento{this.state.cartElements === 1 ? "":"s"}</span>
             </div>
         )
     }
