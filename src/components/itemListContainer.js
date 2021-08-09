@@ -1,7 +1,21 @@
 import React, {useEffect, useState} from "react";
 import "./itemListContainer.sass";
 
-import Item from "./item";
+const Item = (props) => {
+    return (
+        <div className="product card">
+            <img className="card-img-top product-img" alt={props.itemName} src={props.thumbnail}></img>
+            <div className="card-body">
+                <h3 className="card-title">{props.itemName}</h3>
+                <h5>${props.price}</h5>
+                <p className="card-text"></p>
+                <a href="#" className="btn btn-primary">
+                    Añadir a carrito
+                </a>
+            </div>
+        </div>
+    );
+};
 
 const ItemListContainer = (props) => {
 
@@ -32,7 +46,7 @@ const ItemListContainer = (props) => {
             <div className="container-fluid itemListContainer">
                 {
                     data && data.length > 0 && data.map((product) =>
-                        <Item key={product.id} itemName={product.title} price={product.price} thumbnail={product.thumbnail} stock={product.stock}></Item>
+                        <Item itemName={product.title} price={product.price} thumbnail={product.thumbnail}></Item>
                     )
                 }
                 
