@@ -1,28 +1,20 @@
 import React, {useEffect, useState} from "react";
 import Item from "./item";
+import getData from "../helpers"
+
 
 const ItemList = (props) => {
 
     // Funcion para poder agarrar el json products que tiene toda la info de los productos
     // Imagenes de productos fueron obtenidas por medio de web scrapping google images
-    const getData = () => {
-        fetch("products.json", {
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-        })
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (productos) {
-            setData(productos)
-        });
-    };
     const [data, setData] = useState([]);
     //Hago que agarre la data del products.json al iniciar el componente
     useEffect(() => {
-        setTimeout(() => getData(),1000);
+        setTimeout(() => 
+            getData()
+            .then(function (productos) {
+                setData(productos)
+            }),1000);
     }, []);
 
     return (<>

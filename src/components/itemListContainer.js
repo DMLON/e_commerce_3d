@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import "./itemListContainer.sass";
 
 import ItemList from "./itemList";

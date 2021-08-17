@@ -1,85 +1,109 @@
 [
     {
         "title": "Banana",
+        "category":"food",
         "price": 2542,
         "thumbnail": "images/banana.jpg",
+        "description":"Es una banana, provee potasio y es amarilla",
         "id": 1,
         "stock": 5
     },
     {
         "title": "Calculator Casio",
+        "category":"electronic",
         "price": 1358,
         "thumbnail": "images/calculator casio.jpg",
+        "description":"Permite hacer calculos cientificos de alta complejidad",
         "id": 2,
         "stock": 0
     },
     {
         "title": "Calavera Humana",
+        "category":"bone",
         "price": 735,
         "thumbnail": "images/human skull.jpg",
+        "description":"La tenemos todos, nos sirve para mantener la estructura y cuidar nuestro cerebro",
         "id": 3,
         "stock": 10
     },
     {
         "title": "Monitor",
+        "category":"electronic",
         "price": 2471,
         "thumbnail": "images/monitor.jpg",
+        "description":"Necesario para cualquier tarea de computacion",
         "id": 4,
         "stock": 5
     },
     {
         "title": "Golden",
+        "category":"pet",
         "price": 3954,
         "thumbnail": "images/dog golden.jpg",
+        "description":"Perros dorados muy juguetones",
         "id": 5,
         "stock": 5
     },
     {
         "title": "Iphone x12",
+        "category":"electronic",
         "price": 3160,
         "thumbnail": "images/iphone x12.jpg",
+        "description":"Celular exorbitantemente caro",
         "id": 6,
         "stock": 5
     },
     {
         "title": "Femur",
+        "category":"bone",
         "price": 2321,
         "thumbnail": "images/femur.jpg",
+        "description":"Hueso que nos permite caminar",
         "id": 7,
         "stock": 5
     },
     {
         "title": "Botella",
+        "category":"misc",
         "price": 168,
         "thumbnail": "images/bottle.jpg",
+        "description":"Contenedor de liquido ideal",
         "id": 8,
         "stock": 5
     },
     {
         "title": "Collar Ortopedico Cervical",
+        "category":"misc",
         "price": 371,
         "thumbnail": "images/orthopedic cervical collar.jpg",
+        "description":"Para esos dias que duele todo",
         "id": 9,
         "stock": 5
     },
     {
         "title": "Michi",
+        "category":"pet",
         "price": 2970,
         "thumbnail": "images/kitten.jpg",
+        "description":"Nuestros dioses gatunos",
         "id": 10,
         "stock": 5
     },
     {
         "title": "Manzana",
+        "category":"food",
         "price": 3628,
         "thumbnail": "images/apple fruit.jpg",
+        "description":"Las semillas contienen leves cantidades de cianuro",
         "id": 11,
         "stock": 5
     },
     {
         "title": "Palanca",
+        "category":"utils",
         "price": 3791,
         "thumbnail": "images/crowbar.jpg",
+        "description":"Arma iconica de Gordon Freeman",
         "id": 12,
         "stock": 5
     }
