@@ -2,8 +2,14 @@ import React from "react";
 import "./navbar.sass";
 import CartWidget from "./cartWidget";
 import SearchBar from "./searchBar";
+import { Link, NavLink } from "react-router-dom";
 
-const categories = ["Catalogo", "Cotizador", "Contacto", "Acerca de", "Log In"];
+const categories = [
+    {name:"Catalogo",link:"/"}, 
+    {name:"Cotizador",link:"/cotization"}, , 
+    {name:"Contacto",link:"/contact"},  
+    {name:"Acerca de",link:"/about"}, , 
+    {name:"Log In",link:"/login"}, ];
 
 function NavBarToggler(props) {
     return (
@@ -26,10 +32,10 @@ function NavBarToggler(props) {
 class NavBar extends React.Component {
     renderCategory(category) {
         return (
-            <li key={category} className={"nav-item"}>
-                <a className={"nav-link active"} aria-current={"page"}>
-                    {category}
-                </a>
+            <li key={category.name} className={"nav-item"}>
+                <NavLink exact activeClassName="selected-link" className={"nav-link active"} to={category.link} aria-current={"page"}>
+                    {category.name}
+                </NavLink>
             </li>
         );
     }
@@ -37,13 +43,16 @@ class NavBar extends React.Component {
         return (
             <nav className={"navbar navbar-expand-lg navbar-light bg-soft-yellow"}>
                 <div className={"container-fluid"}>
-                    <a className={"navbar-brand"}>CT@Home</a>
+                    <Link to="/" className={"navbar-brand"}>CT@Home</Link>
                     <NavBarToggler target={"navbarToggler"}/>
                     <div className={"collapse navbar-collapse"} id={"navbarToggler"}>
                         <ul className={"navbar-nav me-auto mb-2 mb-lg-0"}>
                             {categories.map((category) => this.renderCategory(category))}
                         </ul>
-                        <CartWidget />
+                        <NavLink className="nav-link" exact activeClassName="selected-link" to="/cart">
+                            <CartWidget />
+                        </NavLink>
+                        
                     </div>
                     {/* https://codepen.io/thalesmelo/pen/LRYwQo */}
                 </div>
