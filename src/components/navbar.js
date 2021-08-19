@@ -1,7 +1,6 @@
 import React from "react";
 import "./navbar.sass";
 import CartWidget from "./cartWidget";
-import SearchBar from "./searchBar";
 import { Link, NavLink } from "react-router-dom";
 
 const categories = [
@@ -9,7 +8,9 @@ const categories = [
     {name:"Cotizador",link:"/cotization"}, , 
     {name:"Contacto",link:"/contact"},  
     {name:"Acerca de",link:"/about"}, , 
-    {name:"Log In",link:"/login"}, ];
+    {name:"Log In",link:"/login"},
+    {name:"Comida",link:"/category/food"},
+    {name:"Misc",link:"/category/misc"}, ];
 
 function NavBarToggler(props) {
     return (

@@ -3,7 +3,7 @@ import Item from "./item";
 import getData from "../helpers"
 
 
-const ItemList = (props) => {
+const ItemList = ({filterCategory}) => {
 
     // Funcion para poder agarrar el json products que tiene toda la info de los productos
     // Imagenes de productos fueron obtenidas por medio de web scrapping google images
@@ -19,8 +19,12 @@ const ItemList = (props) => {
 
     return (<>
             {
-                data && data.length > 0 && data.map((product) =>
-                    <Item key={product.id} itemName={product.title} price={product.price} thumbnail={product.thumbnail} stock={product.stock}></Item>
+                data && 
+                data.length > 0 && 
+                data
+                .filter(el=>filterCategory == null? el : el.category==filterCategory)
+                .map((product) =>
+                    <Item key={product.id} id={product.id} itemName={product.title} price={product.price} thumbnail={product.thumbnail} stock={product.stock}></Item>
                 )
             }
         </>
