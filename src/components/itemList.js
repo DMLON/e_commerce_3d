@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import Item from "./item";
 import getData from "../helpers"
-
+import Modal from './Modal/modal'
+import { Link } from "react-router-dom";
 
 const ItemList = ({filterCategory}) => {
 
@@ -17,6 +18,7 @@ const ItemList = ({filterCategory}) => {
             }),1000);
     }, []);
 
+
     return (<>
             {
                 data && 
@@ -24,7 +26,7 @@ const ItemList = ({filterCategory}) => {
                 data
                 .filter(el=>filterCategory == null? el : el.category==filterCategory)
                 .map((product) =>
-                    <Item key={product.id} id={product.id} itemName={product.title} price={product.price} thumbnail={product.thumbnail} stock={product.stock}></Item>
+                    <Item key={product.id} item={product}></Item>
                 )
             }
         </>

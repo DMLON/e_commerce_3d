@@ -1,24 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import ItemCount from "./itemCount";
 import './item.sass'
 import { NavLink } from "react-router-dom";
 
-const Item = (props) => {
 
+
+const Item = ({item, onAddCallback}) => {
+    const [addedQuantity, setAddedQuantity] = useState(0);
+    const [added, setAdded] = useState(false)
+    const onAdd = (cantidad)=>{
+        setAddedQuantity(cantidad);
+        if(onAddCallback) onAddCallback(item,cantidad);
+    }
+    
     return (
             <div className="product card">
-                <NavLink className="product-link" to={`/item/${props.id}`}>
-                    <img className="card-img-top product-img" alt={props.itemName} src={`/${props.thumbnail}`}></img>
+                <NavLink className="product-link" to={`/item/${item.id}`}>
+                    <img className="card-img-top product-img" alt={item.title} src={`/${item.thumbnail}`}></img>
                 </NavLink>
                 <div className="card-body w-100">
-                    <NavLink className="product-link" to={`/item/${props.id}`}>
-                        <h3 className="card-title">{props.itemName}</h3>
-                        <h5>${props.price}</h5> 
+                    <NavLink className="product-link" to={`/item/${item.id}`}>
+                        <h3 className="card-title">{item.title}</h3>
+                        <h5>${item.price}</h5> 
                     </NavLink>
 
-                    {(props.stock <= 0) ? <h5 className="text-red">Sin stock</h5> : <></>}
+                    {(item.stock <= 0) ? <h5 className="text-red">Sin stock</h5> : <></>}
                     <p className="card-text"></p>
-                    <ItemCount stock={props.stock} initial={1} onAdd={(cantidad)=>console.log(`Comprando ${cantidad} ${props.itemName}...`)}></ItemCount>
+                    <ItemCount stock={item.stock} initial={1} onAdd={onAdd}></ItemCount>
                 </div>
             </div>
         
