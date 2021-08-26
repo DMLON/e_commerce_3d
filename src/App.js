@@ -8,6 +8,7 @@ import Login from "./routes/login"
 import Contacto from "./routes/contacto"
 import Cotizador from "./routes/cotizador"
 import Cart from "./routes/cart"
+import { CartProvider } from "./components/cartContext";
 
 
 
@@ -15,35 +16,37 @@ import Cart from "./routes/cart"
 
 function App() {
     return (
-    <BrowserRouter>
-        <NavBar/>
-        <Switch>
-            <Route exact path="/about">
-                <About/>
-            </Route>
-            <Route exact path="/contact">
-                <Contacto/>
-            </Route>
-            <Route exact path="/cotization">
-                <Cotizador/>
-            </Route>
-            <Route exact path="/login">
-                <Login/>
-            </Route>
-            <Route exact path="/cart">
-                <Cart/>
-            </Route>
-            <Route exact path="/item/:itemId">
-                <ItemDetailContainer/>
-            </Route>
-            <Route exact path="/category/:category">
-                <ItemListContainer/>
-            </Route>
-            <Route path="/">
-                <ItemListContainer/>
-            </Route>
-        </Switch>
-    </BrowserRouter>
+    <CartProvider>
+        <BrowserRouter>
+            <NavBar/>
+            <Switch>
+                <Route exact path="/about">
+                    <About/>
+                </Route>
+                <Route exact path="/contact">
+                    <Contacto/>
+                </Route>
+                <Route exact path="/cotization">
+                    <Cotizador/>
+                </Route>
+                <Route exact path="/login">
+                    <Login/>
+                </Route>
+                <Route exact path="/cart">
+                    <Cart/>
+                </Route>
+                <Route exact path="/item/:itemId">
+                    <ItemDetailContainer/>
+                </Route>
+                <Route exact path="/category/:category">
+                    <ItemListContainer/>
+                </Route>
+                <Route path="/">
+                    <ItemListContainer/>
+                </Route>
+            </Switch>
+        </BrowserRouter>
+    </CartProvider>
     );
     
 }
