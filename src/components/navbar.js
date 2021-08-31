@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./navbar.sass";
 import CartWidget from "./cartWidget";
 import { Link, NavLink } from "react-router-dom";
+
+import { CartContext } from "./cartContext";
 
 const categories = [
     {name:"Catalogo",link:"/"}, 
@@ -30,8 +32,10 @@ function NavBarToggler(props) {
     );
 }
 
-class NavBar extends React.Component {
-    renderCategory(category) {
+function NavBar() {
+    const cartContext = useContext(CartContext)
+
+    function renderCategory(category) {
         return (
             <li key={category.name} className={"nav-item"}>
                 <NavLink exact activeClassName="selected-link" className={"nav-link active"} to={category.link} aria-current={"page"}>
@@ -40,26 +44,27 @@ class NavBar extends React.Component {
             </li>
         );
     }
-    render() {
-        return (
-            <nav className={"navbar navbar-expand-lg navbar-light bg-soft-yellow"}>
-                <div className={"container-fluid"}>
-                    <Link to="/" className={"navbar-brand"}>CT@Home</Link>
-                    <NavBarToggler target={"navbarToggler"}/>
-                    <div className={"collapse navbar-collapse"} id={"navbarToggler"}>
-                        <ul className={"navbar-nav me-auto mb-2 mb-lg-0"}>
-                            {categories.map((category) => this.renderCategory(category))}
-                        </ul>
-                        <NavLink className="nav-link" exact activeClassName="selected-link" to="/cart">
-                            <CartWidget />
-                        </NavLink>
-                        
-                    </div>
-                    {/* https://codepen.io/thalesmelo/pen/LRYwQo */}
+    return (
+        <nav className={"navbar navbar-expand-lg navbar-light bg-soft-yellow"}>
+            <div className={"container-fluid"}>
+                <Link to="/" className={"navbar-brand"}>CT@Home</Link>
+                <NavBarToggler target={"navbarToggler"}/>
+                <div className={"collapse navbar-collapse"} id={"navbarToggler"}>
+                    <ul className={"navbar-nav me-auto mb-2 mb-lg-0"}>
+                        {categories.map((category) => renderCategory(category))}
+                    </ul>
+                    {cartContext.cart.length > 0?
+                    <NavLink className="nav-link-custom" exact activeClassName="selected-link" to="/cart">
+                        <CartWidget />
+                    </NavLink>
+                    : <></>
+                    }
                 </div>
-            </nav>
-        );
-    }
+                {/* https://codepen.io/thalesmelo/pen/LRYwQo */}
+            </div>
+        </nav>
+    );
+
 }
 
 export default NavBar;

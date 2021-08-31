@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import ItemCount from "./itemCount";
 import './item.sass'
 import { NavLink } from "react-router-dom";
+import { CartContext } from "./cartContext";
 
 
-
-const Item = ({item, onAddCallback}) => {
+const Item = ({item}) => {
+    const cartContext = useContext(CartContext)
     const [addedQuantity, setAddedQuantity] = useState(0);
-    const [added, setAdded] = useState(false)
     const onAdd = (cantidad)=>{
         setAddedQuantity(cantidad);
-        if(onAddCallback) onAddCallback(item,cantidad);
+        cartContext.addItem(item,cantidad);
     }
     
     return (

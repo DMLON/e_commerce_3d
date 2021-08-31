@@ -1,18 +1,15 @@
-import React, { Component } from 'react'
+import React, { useContext } from 'react'
 import "./cartWidget.sass";
+import { CartContext } from "./cartContext"
 
-export default class CartWidget extends Component {
-    constructor(props){
-        super(props);
-        this.state = {cartElements: 1}
-    }
+
+export default function CartWidget() {
+    const cartContext = useContext(CartContext)    
+    return (
+        <>
+            <span className={"iconify iconify-cart"} data-icon={"mdi:cart-outline"} data-inline={"false"}></span>
+            <span className={"cart-items"}>{cartContext.getTotalItems()} elemento{cartContext.getTotalItems() === 1 ? "":"s"}</span>
+        </>
+    )
     
-    render() {
-        return (
-            <div className={"cart"}>
-                <span className={"iconify"} data-icon={"mdi:cart-outline"} data-inline={"false"}></span>
-                <span>{this.state.cartElements} elemento{this.state.cartElements === 1 ? "":"s"}</span>
-            </div>
-        )
-    }
 }

@@ -18,7 +18,7 @@ const ItemDetailContainer = () => {
         .then(function (productos) {
             console.log(productos);
             setData(productos)
-        }),1000);
+        }),200);
     },[])
 
     // Esta seria la idea en realidad, cuando cambie itemID o data, que actualize el item

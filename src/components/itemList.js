@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from "react";
+
 import Item from "./item";
 import getData from "../helpers"
-import Modal from './Modal/modal'
-import { Link } from "react-router-dom";
 
 const ItemList = ({filterCategory}) => {
-
+    
     // Funcion para poder agarrar el json products que tiene toda la info de los productos
     // Imagenes de productos fueron obtenidas por medio de web scrapping google images
     const [data, setData] = useState([]);
@@ -15,7 +14,7 @@ const ItemList = ({filterCategory}) => {
             getData()
             .then(function (productos) {
                 setData(productos)
-            }),1000);
+            }),200);
     }, []);
 
 
