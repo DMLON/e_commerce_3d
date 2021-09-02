@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
-import firebase from "firebase/compat/app";
-
+import firebase from "firebase/app";
+import 'firebase/firestore';
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -15,7 +15,7 @@ const firebaseConfig = {
     measurementId: "G-K67R3R08WZ"
 };
 
-const app = firebase.initializeApp(firebaseConfig)
+const app = firebase.initializeApp(firebaseConfig);
 
 // Initialize Firebase
 export const getFirebase = () => app;
