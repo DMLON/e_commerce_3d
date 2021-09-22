@@ -9,7 +9,7 @@ import Contacto from "./routes/contacto"
 import Cart from "./routes/cart"
 import Checkout from "./routes/checkout";
 import { CartProvider } from "./components/cartContext";
-
+import { LoginProvider } from "./components/loginContext";
 
 
 // ["Catalogo", "Cotizador", "Contacto", "Acerca de", "Log In"];
@@ -17,6 +17,7 @@ import { CartProvider } from "./components/cartContext";
 function App() {
     return (
     <CartProvider>
+        <LoginProvider>
         <BrowserRouter>
             <NavBar/>
             <Switch>
@@ -46,6 +47,7 @@ function App() {
                 </Route>
             </Switch>
         </BrowserRouter>
+        </LoginProvider>
     </CartProvider>
     );
     

@@ -1,4 +1,4 @@
-import React, { useState, useContext} from "react";
+import React, { useContext} from "react";
 import ItemCount from "./itemCount";
 import './item.sass'
 import { NavLink } from "react-router-dom";
@@ -7,9 +7,7 @@ import { CartContext } from "./cartContext";
 
 const Item = ({item}) => {
     const cartContext = useContext(CartContext)
-    const [addedQuantity, setAddedQuantity] = useState(0);
     const onAdd = (cantidad)=>{
-        setAddedQuantity(cantidad);
         cartContext.addItem(item,cantidad);
     }
     

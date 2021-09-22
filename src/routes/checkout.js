@@ -5,6 +5,7 @@ import CartContent from '../components/cartContent';
 import {getFirestore} from "../firebaseInit"
 import firebase from "firebase/app";
 import 'firebase/firestore';
+import { LoginContext } from '../components/loginContext';
 
 
 const empty_user = {
@@ -15,6 +16,7 @@ const empty_user = {
 }
 const Checkout = () => {
     const cartContext = useContext(CartContext);
+    const loginContext = useContext(LoginContext);
     const [user, setUser] = useState(JSON.parse(JSON.stringify(empty_user)));
     const [orderId, setOrderId] = useState(null);
     const [error, setError] = useState(null);
@@ -59,9 +61,16 @@ const Checkout = () => {
         const items = cartContext.cart.map(item=>{return {
             id:item.item.id, title:item.item.title, price:item.item.price, quantity: item.quantity
         }})
+
+        let buyUser = loginContext.user ? {
+            name:loginContext.user.displayName,
+            email:loginContext.user.email,
+            phone:"",
+            news:true
+        } : user
         
         const order = {
-            buyer: user,
+            buyer: buyUser,
             items: items,
             date: firebase.firestore.Timestamp.fromDate(new Date()),
             total: cartContext.getTotalPrice()
@@ -93,6 +102,14 @@ const Checkout = () => {
             setUser({...user,[attr]:evt.target.checked});
         else
             setUser({...user,[attr]:evt.target.value});
+    }
+
+    function renderBuyAsGoogle(){
+        return (
+        <div className="row mx-2 mt-2" >
+            <button onClick={createOrder} className="btn btn-secondary mx-2 mt-2">Buy as {loginContext.user.displayName}</button>
+        </div>
+        )
     }
 
     function renderItems(){
@@ -136,7 +153,11 @@ const Checkout = () => {
                             <input type="checkbox" className="form-check-input" id="user-newsletter" onChange={evt => updateAttribute("news",evt,true)}/>
                             <label className="form-check-label" htmlFor="user-newsletter">Suscribe to Newsletter to get the best promotions and offers</label>
                         </div>
-                        <button className="btn btn-primary" onClick={createOrder}>Complete Purchase</button>
+
+                        {loginContext.user ? renderBuyAsGoogle(): <></>}
+                        <div className="row mx-2 mt-2">
+                            <button className="btn btn-primary mx-2 mt-2" onClick={createOrder}>Complete Purchase</button>
+                        </div>
                     </div>
                     <div className="col text-center">
                         <CartContent enableEdit={false}/>

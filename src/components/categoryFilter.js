@@ -17,7 +17,6 @@ const CategoryFilter = () => {
             }
 
             const categoriesQuery = query.docs.map(cat => {return {id:cat.id, ...cat.data()}})
-            console.log(categoriesQuery);
             setCategories([...categoriesQuery])
         })
     },[])
@@ -25,7 +24,7 @@ const CategoryFilter = () => {
 
     const renderDropdownItem = (item) =>{
         return (
-        <li>
+        <li key={item.key}>
             <Link className="dropdown-item" to={"/category/"+item.key}>
                 {item.name}
             </Link>
@@ -36,7 +35,7 @@ const CategoryFilter = () => {
 
     return (
         <div className="mx-5 mt-2">
-            {(category) ? <h2>Filtering by: {categories.find(cat=>cat.key==category)?.name}</h2>:<h2>Filter by category</h2>}
+            {(category) ? <h2>Filtering by: {categories.find(cat=>cat.key===category)?.name}</h2>:<h2>Filter by category</h2>}
             <div className="dropdown">
                 <button
                     className="btn btn-secondary dropdown-toggle"

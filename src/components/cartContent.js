@@ -27,7 +27,7 @@ const CartContent = ({enableEdit}) => {
                 <tbody>
                     {cartContext.cart.map(itemQuantity =>(
                     <tr>
-                        <td><img style={{width: "100px", height:"100px"}} src={itemQuantity.item.thumbnail}></img></td>
+                        <td><img alt={itemQuantity.item.title} style={{width: "100px", height:"100px"}} src={itemQuantity.item.thumbnail}></img></td>
                         <td>{itemQuantity.item.title}</td>
                         <td>${itemQuantity.item.price}</td>
                         <td>{itemQuantity.quantity}</td>

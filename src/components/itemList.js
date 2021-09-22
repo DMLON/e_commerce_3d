@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Item from "./item";
 import {getFirestore} from "../firebaseInit"
-import { AddShoppingCartTwoTone } from "@material-ui/icons";
 
 const ItemList = ({filterCategory}) => {
     
@@ -58,7 +57,7 @@ const ItemList = ({filterCategory}) => {
 
 
     return (<>
-            {loading?<h2>Loading items...</h2>:data && data.length == 0?<h2>No items</h2>:<></>}
+            {loading?<h2>Loading items...</h2>:data && data.length === 0?<h2>No items</h2>:<></>}
             {
                 data && 
                 data.length > 0 && 

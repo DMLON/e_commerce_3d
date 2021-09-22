@@ -1,9 +1,13 @@
-import React, {useEffect,useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './itemCountContainer.sass'
 
 const ItemCount = ({stock, initial, onAdd}) => {
     const [stockActual, setstockActual] = useState(stock);
     const [cantidad, setcantidad] = useState(initial);
+
+    useEffect(() => {
+        setstockActual(stock);        
+    }, [stock])
 
     const stockAvailable = () => stockActual > 0;
 
