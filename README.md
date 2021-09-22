@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This proyect shows an example of usage of React with React Router, Bootstrap and SASS for an E-Commerce App related to 3D Printing (Currently under construction) for [Coderhouse's](www.coderhouse.com) React Cource
+This proyect shows an example of usage of React with React Router, Bootstrap and SASS for an E-Commerce App related to 3D Printing (Currently under construction) for [Coderhouse's](https://www.coderhouse.com) React Cource
 
 
 ## Usage
