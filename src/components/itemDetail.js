@@ -25,7 +25,7 @@ const ItemDetail = ({item}) => {
         else{
             return (
             <div className="text-center">
-                <Link className="btn btn-success" to="/cart">Terminar Compra</Link>
+                <Link className="btn btn-success" to="/cart">End Purchase</Link>
             </div>
             );
         }
@@ -38,8 +38,8 @@ const ItemDetail = ({item}) => {
                 <div className="card-body w-100">
                     <h3 className="card-title">{item.title}</h3>
                     <h5>${item.price}</h5> 
-                    {(item.stock <= 0) ? <h5 className="text-red">Sin stock</h5> : <></>}
-                    <h6 className="card-text">Categoria: {item.category}</h6>
+                    {(item.stock <= 0) ? <h5 className="text-red">No stock</h5> : <></>}
+                    <h6 className="card-text">Category: {item.category}</h6>
                     <p className="card-text">{item.description}</p>
                     {
                         renderPurchase()

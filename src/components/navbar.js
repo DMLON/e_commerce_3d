@@ -2,17 +2,14 @@ import React, { useContext } from "react";
 import "./navbar.sass";
 import CartWidget from "./cartWidget";
 import { Link, NavLink } from "react-router-dom";
-
+import SearchBar from "./searchBar";
 import { CartContext } from "./cartContext";
 
 const categories = [
-    {name:"Catalogo",link:"/"}, 
-    {name:"Cotizador",link:"/cotization"}, , 
-    {name:"Contacto",link:"/contact"},  
-    {name:"Acerca de",link:"/about"}, , 
-    {name:"Log In",link:"/login"},
-    {name:"Comida",link:"/category/food"},
-    {name:"Misc",link:"/category/misc"}, ];
+    {name:"Catalog",link:"/"}, 
+    {name:"Contact",link:"/contact"},  
+    {name:"About us",link:"/about"},
+    {name:"Log In",link:"/login"}];
 
 function NavBarToggler(props) {
     return (
@@ -53,13 +50,15 @@ function NavBar() {
                     <ul className={"navbar-nav me-auto mb-2 mb-lg-0"}>
                         {categories.map((category) => renderCategory(category))}
                     </ul>
-                    {cartContext.cart.length > 0?
+                    <SearchBar/>
+                    
+                </div>
+                {cartContext.cart.length > 0?
                     <NavLink className="nav-link-custom" exact activeClassName="selected-link" to="/cart">
                         <CartWidget />
                     </NavLink>
                     : <></>
                     }
-                </div>
                 {/* https://codepen.io/thalesmelo/pen/LRYwQo */}
             </div>
         </nav>

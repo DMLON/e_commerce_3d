@@ -16,10 +16,10 @@ const CartContent = ({enableEdit}) => {
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Producto</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Total Parcial</th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Partial Total</th>
                         {enableEdit?<th></th>: <></>}
                     </tr>
                     

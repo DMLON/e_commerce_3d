@@ -9,7 +9,7 @@ const Cart = () => {
     function renderItems(){
         return <div className="text-center mt-4 container">
             <CartContent enableEdit={true}/>
-        <Link className="btn btn-success" to="/checkout">Finalizar Compra</Link>
+        <Link className="btn btn-success" to="/checkout">Complete Purchase</Link>
         </div>
     }
 
@@ -17,8 +17,8 @@ const Cart = () => {
         return <>
         
         <div className="text-center">
-            <p className="mt-4">No hay items!</p>
-            <Link className="btn btn-success" to="/">Volver al catalogo</Link>
+            <p className="mt-4">No items in cart</p>
+            <Link className="btn btn-success" to="/">Go to Catalog</Link>
         </div>
         </>
     }

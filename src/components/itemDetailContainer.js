@@ -10,31 +10,55 @@ const ItemDetailContainer = () => {
     // Funcion para poder agarrar el json products que tiene toda la info de los productos
     // Imagenes de productos fueron obtenidas por medio de web scrapping google images
     const [item, setItem] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const db = getFirestore();
         const itemCollection = db.collection("items");
+        const categories = db.collection("categories");
         const item_db = itemCollection.doc(itemId);
 
+        // Get item
         item_db.get().then(doc=>{
             if(!doc.exists){
                 console.error("Item no existe");
                 return;
             }
-            setItem({id:doc.id, ...doc.data()});
+            const item = doc.data();
+            // Then get associated category
+            const itemCategory = categories.doc("" + item.category);
+            itemCategory.get().then(itemCat=>{
+                setItem({id:doc.id, ...doc.data(),category:itemCat.data().name});
+            })
+            
         })
         .catch(error=>{
             console.error("Error buscando el item",error);
         })
         .finally(()=>{
-            //setLoading(false);
+            setLoading(false);
         });
     },[])   
+
+    const renderItemDetail = () =>{
+        if(item == null){
+            return renderNotFound()
+        }
+        return <ItemDetail item={item}/>
+    }
+
+    const renderNotFound = () =>{
+        return <h1>Not found</h1>
+    }
+
+    const renderLoading = () =>{
+        return <h1>Loading...</h1>
+    }
 
     return (
         <div className="itemDetailContainer">
             {
-                item && <ItemDetail item={item}/>
+                loading ? renderLoading() : renderItemDetail()
             }
         </div>
     )

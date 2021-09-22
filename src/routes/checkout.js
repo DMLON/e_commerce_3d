@@ -71,7 +71,7 @@ const Checkout = () => {
         const orders = db.collection('orders');
 
         try{
-        const {id} = await orders.add(order)
+            const {id} = await orders.add(order)
             setOrderId(id);
             await updateStock(items,db)
             setCheckoutDone(true)
@@ -98,20 +98,20 @@ const Checkout = () => {
     function renderItems(){
         if(error != null){
             return <div className="container mt-4 text-center">
-                <h1>Hubo un error durante la compra.</h1>
-                <Link className="btn btn-danger" to="/">Volver al catalogo</Link>
+                <h1>An error ocurred during the purchase</h1>
+                <Link className="btn btn-danger" to="/">Go to Catalog</Link>
             </div>
         }
         if(checkoutDone){
             return  <div className="container mt-4 text-center">
-                <h1>Compra realizada con exito!</h1>
-                <h2>Su id de la orden es: {orderId}</h2>
-                <Link className="btn btn-success" to="/">Volver al catalogo</Link>
+                <h1>Success! You order has been created</h1>
+                <h2>You order ID is: {orderId}</h2>
+                <Link className="btn btn-success" to="/">Go to Catalog</Link>
             </div>
         }
         if(loading){
             return  <div className="container mt-4 text-center">
-                <h2>Completando compra...</h2>
+                <h2>Completing Purchase...</h2>
             </div>
         }
         else{
@@ -120,7 +120,7 @@ const Checkout = () => {
                 <div className="row">
                     <div className="form col">
                         <div className="mb-3">
-                            <label htmlFor="user-name" className="form-label">Nombre</label>
+                            <label htmlFor="user-name" className="form-label">Name</label>
                             <input type="text" className="form-control" id="user-name" onChange={evt => updateAttribute("name",evt)}/>
                         </div>
                         <div className="mb-3">
@@ -129,14 +129,14 @@ const Checkout = () => {
                             <div id="emailHelp" className="form-text">Nunca compartiremos tu mail con nadie.</div>
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="user-phone" className="form-label">Telefono</label>
+                            <label htmlFor="user-phone" className="form-label">Phone</label>
                             <input type="phone" className="form-control" id="user-phone" onChange={evt => updateAttribute("phone",evt)}/>
                         </div>
                         <div className="mb-3 form-check">
                             <input type="checkbox" className="form-check-input" id="user-newsletter" onChange={evt => updateAttribute("news",evt,true)}/>
-                            <label className="form-check-label" htmlFor="user-newsletter">Suscribirme al newsletter para recibir las últimas noticias y ofertas.</label>
+                            <label className="form-check-label" htmlFor="user-newsletter">Suscribe to Newsletter to get the best promotions and offers</label>
                         </div>
-                        <button className="btn btn-primary" onClick={createOrder}>Finalizar Compra</button>
+                        <button className="btn btn-primary" onClick={createOrder}>Complete Purchase</button>
                     </div>
                     <div className="col text-center">
                         <CartContent enableEdit={false}/>
@@ -149,8 +149,8 @@ const Checkout = () => {
     function renderNoItems(){
         return <>
         <div className="text-center">
-            <p className="mt-4">No hay items!</p>
-            <Link className="btn btn-success" to="/">Volver al catalogo</Link>
+            <p className="mt-4">No items in cart</p>
+            <Link className="btn btn-success" to="/">Go to Catalog</Link>
         </div>
         </>
     }

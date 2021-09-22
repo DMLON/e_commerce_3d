@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Item from "./item";
 import {getFirestore} from "../firebaseInit"
+import { AddShoppingCartTwoTone } from "@material-ui/icons";
 
 const ItemList = ({filterCategory}) => {
     
@@ -10,13 +11,28 @@ const ItemList = ({filterCategory}) => {
 
     const [loading, setLoading] = useState(true);
 
+    async function getFilteredItems(db,itemCollection){
+        const categoryCollection = db.collection("categories");
+        const filteredCategory = categoryCollection.where("key","==",filterCategory);
+        const query = await filteredCategory.get();
+        const categories = query.docs;
+        if(categories.length > 0){
+            const categoryId = categories[0].id;
+            const filteredItems = itemCollection.where('category','==',+categoryId);
+            return filteredItems;
+        }
+        else
+            return [];
+    }
     //Hago que agarre la data del products.json al iniciar el componente
-    function fetchItems(){
+    async function fetchItems(){
         const db = getFirestore();
         const itemCollection = db.collection("items");
+        
+        
         let filteredItems = itemCollection;
         if (filterCategory){
-            filteredItems = itemCollection.where('category','==',filterCategory);
+            filteredItems = await getFilteredItems(db,itemCollection);
         }
         filteredItems.get().then(query=>{
             if(query.size === 0){
@@ -46,7 +62,7 @@ const ItemList = ({filterCategory}) => {
             {
                 data && 
                 data.length > 0 && 
-                data
+                data.sort((a,b)=>a.title.localeCompare(b.title))
                 .map((product) =>
                     <Item key={product.id} item={product}></Item>
                 )

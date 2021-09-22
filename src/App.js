@@ -6,7 +6,6 @@ import ItemDetailContainer from "./components/itemDetailContainer";
 import About from "./routes/about"
 import Login from "./routes/login"
 import Contacto from "./routes/contacto"
-import Cotizador from "./routes/cotizador"
 import Cart from "./routes/cart"
 import Checkout from "./routes/checkout";
 import { CartProvider } from "./components/cartContext";
@@ -26,9 +25,6 @@ function App() {
                 </Route>
                 <Route exact path="/contact">
                     <Contacto/>
-                </Route>
-                <Route exact path="/cotization">
-                    <Cotizador/>
                 </Route>
                 <Route exact path="/login">
                     <Login/>
