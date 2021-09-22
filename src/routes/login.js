@@ -35,15 +35,28 @@ const Login = () => {
                 // ...
             });
     }
+
+    function renderLoggedIn(){
+        return <>
+        <h1>Logged as:</h1>
+        <h2>{loginContext.user.displayName}</h2>
+        </>
+    }
+
+    function renderNotLoggedIn(){
+        return <>
+            <h1 >Log in</h1>
+            <div class="col-md-12"> 
+                <button className="btn btn-lg btn-google btn-block text-uppercase btn-outline" onClick={googleLoginPopUp}>
+                    <img src="https://img.icons8.com/color/16/000000/google-logo.png"/> Signup Using Google
+                </button> 
+            </div>
+        </>
+    }
     return (
         <div className="grid-container">
             <div class="login-content text-center">
-                <h1 >Log in</h1>
-                <div class="col-md-12"> 
-                    <button class="btn btn-lg btn-google btn-block text-uppercase btn-outline" onClick={googleLoginPopUp}>
-                        <img src="https://img.icons8.com/color/16/000000/google-logo.png"/> Signup Using Google
-                    </button> 
-                </div>
+                {loginContext.user != null ? renderLoggedIn(): renderNotLoggedIn()}
             </div>
         </div>
     );
